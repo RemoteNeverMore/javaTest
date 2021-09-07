@@ -15,15 +15,21 @@ public class StringJava8 {
     static List<String> list = Arrays.asList("1","b","2");
 
     public static void main(String[] args) {
+
+        String name = "sssxx__name";
+        System.out.println(name.substring(name.lastIndexOf("__")+2));
+
+
         List<String> list = new ArrayList<>();
-        list.add("d,cd,2");
-        list.add("aa,ca2");
+//        list.add("d,cd,2");
+//        list.add("aa,ca2");
 //        list.add("bbb1");
 //        list.add("aaa1");
 //        list.add("bbb3");
 //        list.add("ccc");
 //        list.add("bbb2");
 //        list.add("ddd1");
+        list.stream().collect(Collectors.toList());
 
         List<String> addrList = list.stream().flatMap(x->Arrays.stream(x.split(","))).collect(Collectors.toList());
         System.out.println(addrList);

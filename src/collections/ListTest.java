@@ -11,6 +11,9 @@ public class ListTest {
 
 
     public static void main(String[] args) {
+
+
+
 //        List<String> list =  new ArrayList<String>();
 //        for (int  i = 0;  i < 30;  i++) {
 //            list.add(String.valueOf(i));
@@ -22,8 +25,8 @@ public class ListTest {
 //            }
 //            System.out.println(o);
 //        });
-        RuntimeException e =  new RuntimeException("xxxxException");
-        System.out.println(String.format("xxxx:[%s]", e));
+//        RuntimeException e =  new RuntimeException("xxxxException");
+//        System.out.println(String.format("xxxx:[%s]", e));
 
 
 //
@@ -50,9 +53,15 @@ public class ListTest {
 
 //        spiltList(list);
 
-        List<String> list = new ArrayList<>(2);
+        List<String> list = new ArrayList<>(10);
         list.add("guan");
         list.add("bao");
+
+        List<String> list1 = new ArrayList<>(10);
+        list1.add("guan1");
+        list1.add("bao1");
+        list1.retainAll(list1);
+        System.out.println(list1);
         String[] array = list.toArray(new String[0]);
 
 

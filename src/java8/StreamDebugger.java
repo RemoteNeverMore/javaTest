@@ -16,6 +16,9 @@ public class StreamDebugger {
 //                .collect(Collectors.toList())
 //                .forEach(System.out::println);
         groupbyAndBigdecimalSum();
+
+
+
     }
 
 

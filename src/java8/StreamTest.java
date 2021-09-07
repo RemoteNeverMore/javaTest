@@ -23,7 +23,7 @@ public class StreamTest {
 //               .reduce(100,Integer::sum);
 //        System.out.println(sum);
 
-///////////////////////
+//
         List<Pair<String, Double>> pairArrayList = new ArrayList<>(3);
         pairArrayList.add(new Pair<>("version", 12.10));
         pairArrayList.add(new Pair<>("version", 12.19));

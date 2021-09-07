@@ -20,7 +20,7 @@ public class HashMapTest {
         Object o = null;
         map.put("String1","String");
         for (int i = 0; i < 10; i++) {
-            map.put("String"+String.valueOf(i+2),"String");
+            map.put("String"+ (i + 2),"String");
         }
         map.put("String12","String");
         map.put("String13","String");

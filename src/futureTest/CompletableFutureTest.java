@@ -1,7 +1,7 @@
-package async;
+package futureTest;
 
-import java.util.Timer;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -14,13 +14,11 @@ public class CompletableFutureTest {
 
     public static void main(String[] args) throws Exception{
 
-
-//        completableAsync();
-        handleException();
+        completableAsync();
+//        handleException();
     }
 
     private static void handleException() {
-
 
         CompletableFuture<String> five_seconds_later = CompletableFuture.supplyAsync(() -> {
             System.out.println(Thread.currentThread().getName() + "----------start");
@@ -65,7 +63,6 @@ public class CompletableFutureTest {
         });
 
         System.out.println("wait ------------completable  run");
-        Thread thread = Thread.currentThread();
         future.join();
     }
 

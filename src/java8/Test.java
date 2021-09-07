@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -13,11 +14,19 @@ import java.util.*;
 public class Test implements Cloneable{
 
 
-    public Test(String name, BigDecimal value, int var) {
+    public Test(String name, BigDecimal value, String var) {
         this.name = name;
         this.value = value;
         this.var = var;
     }
+
+    public Test(String name, BigDecimal value, int var) {
+        this.name = name;
+        this.value = value;
+        this.var1 = var;
+    }
+
+
 
     public Test() {
     }
@@ -46,13 +55,12 @@ public class Test implements Cloneable{
     }
 
 
-    public Test(int var) {
-        this.var = var;
-    }
+
 
     String name;
     BigDecimal value;
-    int var;
+    String var;
+    int var1;
     Date date;
 
     public static  List<Integer> list  = new ArrayList<>();
@@ -62,6 +70,12 @@ public class Test implements Cloneable{
         list.add(3);
         list.add(4);
     }
+
+    public static void main(String[] args) {
+        List<Integer> collect = list.stream().filter(o -> o > 3).collect(Collectors.toList());
+        System.out.println(collect.size());
+
+    }
     public List<Integer> getList() {
         return list;
     }
@@ -70,11 +84,20 @@ public class Test implements Cloneable{
         this.list = list;
     }
 
-    public int getVar() {
+    public String getVar() {
         return var;
     }
 
-    public void setVar(int var) {
+
+    public int getVar1() {
+        return var1;
+    }
+
+    public void setVar1(int var1) {
+        this.var1 = var1;
+    }
+
+    public void setVar(String var) {
         this.var = var;
     }
 
@@ -94,14 +117,5 @@ public class Test implements Cloneable{
         this.value = value;
     }
 
-    public static void main(String[] args) throws CloneNotSupportedException {
 
-        Test test = new Test();
-        test.setName("clone source");
-        Test test1 = (Test) test.clone();
-        test1.setName("-----");
-        test1.getList().add(5);
-        System.out.println(test1.getList());
-        System.out.println(test.getList());
-    }
 }

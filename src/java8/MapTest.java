@@ -1,6 +1,7 @@
 package java8;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @description:
@@ -27,7 +28,7 @@ public class MapTest {
             System.out.println(v1 + "---" + v2);
         });
 //        String var = "ssss";
-//        map1.merge(9, var, (value, newValue) -> value+","+newValue);
+        map1.merge("1", "newValue", (value, newValue) -> value+","+newValue);
 //        map1.merge(9, var, (value, newValue) -> value+","+newValue);
         System.out.println(map1);
 
@@ -51,7 +52,8 @@ public class MapTest {
 //        map.put("2", Arrays.asList(1,2,3));
 //        Map<String,Integer> map1 = new HashMap<>();
 //        System.out.println(map);
-
+//        Map<String, Long> map = tempList.parallelStream().collect(Collectors.groupingBy(OutOrderBatchItemRsp::getSkuId,
+//                Collectors.counting()));
 
     }
 }

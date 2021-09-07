@@ -24,15 +24,15 @@ public class PoolTest {
          ThreadFactory threadFactory 创建线程的工程
          RejectedExecutionHandler handler 拒绝策略
          */
-//        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2,10,
-//                4, TimeUnit.SECONDS,new LinkedBlockingQueue(20),new MyThreadFactory("tttt"));
-//        AtomicInteger vat = new AtomicInteger(0);
-//        for (int i = 0; i < 1000; i++) {
-//            Thread thread = new Thread(()->{
-//                System.out.println(Thread.currentThread().getName()+"开始执行");
-//            },"name ----- > " + i);
-//            threadPoolExecutor.execute(thread);
-//        }
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10,
+                4, TimeUnit.SECONDS, new LinkedBlockingQueue(20), new MyThreadFactory("test"));
+        AtomicInteger vat = new AtomicInteger(0);
+        for (int i = 0; i < 10; i++) {
+            Thread thread = new Thread(()->{
+                System.out.println(Thread.currentThread().getName()+"开始执行");
+            },"name ----- > " + i);
+            threadPoolExecutor.execute(thread);
+        }
     }
 
     private static void getPoolProperties(ThreadPoolExecutor threadPoolExecutor) {
@@ -42,18 +42,27 @@ public class PoolTest {
 
     static class MyThreadFactory implements ThreadFactory{
 
-       String  name ;
+        /**
+         * 此次线程池的任务名称
+         */
+        private String taskName = "executor";
 
+        /**
+         * 线程计数
+         */
+        private AtomicInteger count = new AtomicInteger(0);
+
+
+        MyThreadFactory(String taskName){
+            this.taskName = taskName;
+        }
         @Override
         public Thread newThread(Runnable r) {
-           Thread thread = new Thread(()->{
-               String name = Thread.currentThread().getName();
-           });
-           return thread;
-        }
-
-        public MyThreadFactory(String name) {
-            this.name = name;
+            Thread thread = new Thread(r);
+            String threadName =  "customExecutor_".toUpperCase() + taskName + count.addAndGet(1);
+            thread.setName(threadName);
+            return thread;
         }
     }
+
 }

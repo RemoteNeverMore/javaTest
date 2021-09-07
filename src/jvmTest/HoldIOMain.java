@@ -1,5 +1,6 @@
 package jvmTest;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -31,10 +32,22 @@ public class HoldIOMain{
         }
 
     }
+
+    public static void test3() {
+        HoldIOMain obj = new HoldIOMain();
+        WeakReference sf = new WeakReference(obj);
+        obj = null;
+        System.out.println("是否被回收" + sf.get());
+        System.gc();
+        System.out.println("是否被回收" + sf.get());
+    }
+
     public static void main(String[] args){    //四线程操作
-        new Thread(new HoldIOTask()).start();
+        test3();
+//        new Thread(new HoldIOTask()).start();
 //        new Thread(new LazyTask()).start();
 //        new Thread(new LazyTask()).start();
 //        new Thread(new LazyTask()).start();
+
     }
 }
