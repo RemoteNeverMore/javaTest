@@ -8,9 +8,8 @@ import java.util.concurrent.TimeUnit;
  * @create: 2021-07-17 18:12
  **/
 public class ThreadLocalTest {
-
-    public static void main(String[] args) {
-//        ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    private static  ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    public static void main(String[] args) throws InterruptedException {
 //
 //        Thread thread1 = new Thread(() -> {
 //            threadLocal.set("woshishui");
@@ -29,15 +28,25 @@ public class ThreadLocalTest {
 //        thread2.start();
 
 
-
-        float a = 1.0f - 0.8f;
-        float b = 0.3f - 0.1f;
-        System.out.println(a ==b);
-        System.out.println(a);
-        System.out.println(b);
-
-        Float x = Float.valueOf(a);
-        Float y = Float.valueOf(b);
-        System.out.println(x.equals(y));
+//
+//        float a = 1.0f - 0.8f;
+//        float b = 0.3f - 0.1f;
+//        System.out.println(a ==b);
+//        System.out.println(a);
+//        System.out.println(b);
+//
+//        Float x = Float.valueOf(a);
+//        Float y = Float.valueOf(b);
+//        System.out.println(x.equals(y));
+        for (int i = 0; i < 10; i++) {
+            Thread thread = new Thread(()-> testLeak());
+            thread.start();
+        }
+        TimeUnit.SECONDS.sleep(190);
     }
+
+    private static  void testLeak(){
+        threadLocal.set(Thread.currentThread().getName());
+    }
+
 }

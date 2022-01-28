@@ -27,7 +27,7 @@ public class OptionalTest {
 
         System.out.println(name1);
         Test test = null;
-        Date date = Optional.ofNullable(test).map(Test::getDate).orElse(new Date());
+        Date date = Optional.ofNullable(test).map(Test::getDate).orElse(null);
         System.out.println(date);;
 
     }

@@ -3,6 +3,12 @@ package collections;
 import com.sun.javafx.binding.StringFormatter;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.crypto.*;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
@@ -11,6 +17,8 @@ public class ListTest {
 
 
     public static void main(String[] args) {
+
+
 
 
 
@@ -53,16 +61,27 @@ public class ListTest {
 
 //        spiltList(list);
 
-        List<String> list = new ArrayList<>(10);
+        List<String> list = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
         list.add("guan");
         list.add("bao");
-
-        List<String> list1 = new ArrayList<>(10);
-        list1.add("guan1");
-        list1.add("bao1");
-        list1.retainAll(list1);
-        System.out.println(list1);
-        String[] array = list.toArray(new String[0]);
+        list.addAll(list2);
+        System.out.println(list);
+//
+//        list.forEach(item->{
+//            System.out.println(item);
+//            if(item.equals("guan")){
+//                return;
+//            }
+//        });
+//
+//        List<String> list1 = new ArrayList<>(10);
+//        list1.add("guan1");
+//        list1.add("bao1");
+//        Collections.shuffle(list1);
+////        list1.retainAll(list1);
+////        System.out.println(list1);
+//        String[] array = list.toArray(new String[0]);
 
 
 
@@ -82,11 +101,6 @@ public class ListTest {
         }
         return groupList;
     }
-
-
-
-
-
 
 
 }

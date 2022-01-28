@@ -48,7 +48,7 @@ public class CompletableFutureTest {
         CompletableFuture<String> future  = CompletableFuture.supplyAsync(()->{
             System.out.println(Thread.currentThread().getName() + "----------start");
             try {
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -56,13 +56,12 @@ public class CompletableFutureTest {
             return "complete";
         });
 
-        future.whenComplete((result,exception)->{
+        future.whenCompleteAsync((result,exception)->{
             if(exception != null){
                 exception.printStackTrace();
             }
             System.out.println(result);
         });
-
         System.out.println("wait ------------completable  run");
         future.join();
     }

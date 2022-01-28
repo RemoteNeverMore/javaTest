@@ -16,49 +16,63 @@ public class FutureTest {
     public static void main(String[] args) throws Exception{
 //        asyncSubmit();
 //        asyncCallable();
+        System.out.println(1 << 8);
           waitTest();
     }
 
     private static void waitTest() throws Exception{
         ExecutorService service = Executors.newCachedThreadPool();
 
-        List<Future<String>> list = new ArrayList<>();
-        Future<String> submit_15 = service.submit(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(15);
-                System.out.println("执行时长为1s的执行完成。");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "sleep fifteen seconds";
+        Future<?> future = service.submit(()->{
+            System.out.println("xxxxx");
+            int a = 1/0;
+            return "xxxxx";
         });
-        list.add(submit_15);
-
-        Future<String> submit_10 = service.submit(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(10);
-                System.out.println("执行时长为10s的执行完成。");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "sleep ten seconds";
-        });
-        list.add(submit_10);
-
-        Future<String> submit_5 = service.submit(() -> {
-            try {
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("执行时长为5s的执行完成。");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return "sleep five seconds";
-        });
-        list.add(submit_5);
-
-        for (Future<String> future:list) {
-            System.out.println(future.get());
+        try {
+            future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+
+//        List<Future<String>> list = new ArrayList<>();
+//        Future<String> submit_15 = service.submit(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(15);
+//                System.out.println("执行时长为1s的执行完成。");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return "sleep fifteen seconds";
+//        });
+//        list.add(submit_15);
+//
+//        Future<String> submit_10 = service.submit(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(1000000);
+//                System.out.println("执行时长为10s的执行完成。");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return "sleep ten seconds";
+//        });
+//        list.add(submit_10);
+//
+//        Future<String> submit_5 = service.submit(() -> {
+//            try {
+//                TimeUnit.SECONDS.sleep(5);
+//                System.out.println("执行时长为5s的执行完成。");
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            return "sleep five seconds";
+//        });
+//        list.add(submit_5);
+//
+//        for (Future<String> future:list) {
+//            System.out.println(future.get());
+//        }
     }
 
     private static void asyncCallable() {

@@ -12,10 +12,13 @@ public class MapTest {
 
     public static void main(String[] args) {
         //一对多的默认值设置
-//        Map<String, List<String>> map = new HashMap<>();
-//        map.computeIfAbsent("aaa",key-> new ArrayList<>()).add("aaa");
-//        map.computeIfAbsent("aaa",key-> new ArrayList<>()).add("333");
-//        System.out.println(map); //aaa = ["aaa","333"]
+        Map<String, List<String>> map = new HashMap<>();
+        map.computeIfAbsent("aaa",key-> new ArrayList<>()).add("aaa");
+        map.computeIfAbsent("aaa",key-> new ArrayList<>()).add("333");
+        map.computeIfAbsent("bbb",key-> new ArrayList<>()).add("333");
+        map.computeIfAbsent("bbb",key-> new ArrayList<>()).add("444");
+        map.putIfAbsent("aaa",Arrays.asList("11111"));
+        System.out.println(map); //aaa = ["aaa","333"]
 //        //获取默认的List
 //        Map<String, List<String>> mapDefault = new HashMap<>();
 //        List<String> bbb = mapDefault.getOrDefault("bbb", new ArrayList<>());
@@ -24,14 +27,16 @@ public class MapTest {
         Map<String, String> map1 = new HashMap<>();
         map1.put("1","1-v");
         map1.put("2","2-v");
-        map1.forEach((v1,v2)->{
-            System.out.println(v1 + "---" + v2);
-        });
+//        map1.forEach((v1,v2)->{
+//            System.out.println(v1 + "---" + v2);
+//        });
 //        String var = "ssss";
         map1.merge("1", "newValue", (value, newValue) -> value+","+newValue);
 //        map1.merge(9, var, (value, newValue) -> value+","+newValue);
         System.out.println(map1);
-
+        map1.forEach((v1,v2)->{
+            System.out.println(v1 + "---" + v2);
+        });
 //        List<String> orderl = null;
 //        orderl.addAll(Arrays.asList("ss"));
 //        System.out.println(map1);
