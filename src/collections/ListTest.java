@@ -13,6 +13,8 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
+import static java.util.stream.Collectors.toList;
+
 public class ListTest {
 
 
@@ -22,10 +24,23 @@ public class ListTest {
 
 
 
-//        List<String> list =  new ArrayList<String>();
-//        for (int  i = 0;  i < 30;  i++) {
-//            list.add(String.valueOf(i));
-//        }
+        List<String> list =  new ArrayList<String>();
+        List<String> list1 =  new ArrayList<String>();
+        for (int  i = 0;  i < 30;  i++) {
+            list.add(String.valueOf(i));
+        }
+
+        for (int  i = 0;  i < 23;  i++) {
+            list1.add(String.valueOf(i));
+        }
+
+        List<String> list2 = list.subList(0, 10);
+        System.out.println(list2.size());
+
+
+//        List<String> reduce1 = list1.stream().filter(item -> !list.contains(item)).collect(toList());
+
+//        System.out.println(Json.string);
 //
 //        list.forEach(o->{
 //            if(o.equals("20")){
@@ -59,14 +74,13 @@ public class ListTest {
 
 
 
-//        spiltList(list);
-
-        List<String> list = new ArrayList<>();
-        List<String> list2 = new ArrayList<>();
-        list.add("guan");
-        list.add("bao");
-        list.addAll(list2);
-        System.out.println(list);
+//
+//        List<String> list = new ArrayList<>();
+//        List<String> list2 = new ArrayList<>();
+//        list.add("guan");
+//        list.add("bao");
+//        list.addAll(list2);
+//        System.out.println(list);
 //
 //        list.forEach(item->{
 //            System.out.println(item);
@@ -87,20 +101,7 @@ public class ListTest {
 
     }
 
-    public static List<List<String>> spiltList(List<String> orderList) {
-        List<List<String>> groupList = new ArrayList<>();
-        int count = 22;
-        int sumSize = orderList.size();
-        for (int i = 0; i < sumSize; i += count) {
-            int lastIndex = i + count;
-            if ((i + count) > sumSize) {
-                lastIndex = sumSize;
-            }
-            List<String> subList = orderList.subList(i, lastIndex);
-            groupList.add(subList);
-        }
-        return groupList;
-    }
+
 
 
 }

@@ -1,5 +1,6 @@
 package thread;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -38,11 +39,17 @@ public class ThreadLocalTest {
 //        Float x = Float.valueOf(a);
 //        Float y = Float.valueOf(b);
 //        System.out.println(x.equals(y));
-        for (int i = 0; i < 10; i++) {
-            Thread thread = new Thread(()-> testLeak());
-            thread.start();
-        }
-        TimeUnit.SECONDS.sleep(190);
+//        for (int i = 0; i < 10; i++) {
+//            Thread thread = new Thread(()-> testLeak());
+//            thread.start();
+//        }
+//        TimeUnit.SECONDS.sleep(190);
+        Object o = new Object();
+        WeakReference weakReference = new WeakReference(o);
+        System.out.println(weakReference.get());
+        o = null;
+        System.gc();
+        System.out.println(weakReference.get());
     }
 
     private static  void testLeak(){

@@ -1,5 +1,6 @@
 package TestObjInit;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,7 +28,15 @@ public class Foo {
 //           }
 //       },"main-thread");
 //        thread.start();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ss EEE");
-        System.out.println(sdf.format(new Date()));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ss EEE");
+//        System.out.println(sdf.format(new Date()));
+
+        float v = Float.parseFloat("10.70 ");
+        BigDecimal bg = new BigDecimal("10.747").setScale(2, BigDecimal.ROUND_HALF_UP);
+        System.out.println(bg);
+
+
+
+
     }
 }

@@ -1,6 +1,8 @@
 package dateDemo;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,9 +15,12 @@ public class DateDemo {
 
     public static void main(String[] args) {
 //        getCalendar();
-        minutesBeforeNow(-10000);
-        hoursBeforeNow(2);
-        yearsBeforeNow(1);
+//        minutesBeforeNow(-10000);
+//        hoursBeforeNow(2);
+//        yearsBeforeNow(1);
+        String s = dateStrBeforeNow(3);
+        System.out.println(s);
+
     }
 
 
@@ -66,4 +71,13 @@ public class DateDemo {
 //        System.out.println(sdf.format(calendar.getTime()));
 
     }
+
+    public static String dateStrBeforeNow(int months) {
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate endDate = LocalDate.now();
+        LocalDate localDate = endDate.minusMonths(months).plusDays(1);
+        String startTime  = localDate.format(fmt);
+        return startTime;
+    }
+
 }

@@ -15,13 +15,19 @@ public class StreamDebugger {
 //                .map(o->o*3)
 //                .collect(Collectors.toList())
 //                .forEach(System.out::println);
-        groupbyAndBigdecimalSum();
-
+//        groupbyAndBigdecimalSum();
+        peek();
 
 
     }
 
-
+    //String List<String>
+    private static void groupByList(){
+        List<Test> tests = Arrays.asList(new Test("1",new BigDecimal(2),3),new Test("1",new BigDecimal(2),3), new Test("11",new BigDecimal(12),33));
+        Map<String, List<BigDecimal>> brandSpusMap = tests.stream()
+                .collect(Collectors.groupingBy(Test::getName,
+                        Collectors.mapping(Test::getValue, Collectors.toList())));
+    }
 
     private static void groupbyAndBigdecimalSum(){
         List<Test> tests = Arrays.asList(new Test("1",new BigDecimal(2),3),new Test("1",new BigDecimal(2),3), new Test("11",new BigDecimal(12),33));
@@ -48,6 +54,17 @@ public class StreamDebugger {
         Map<String, String> itemIdsMap =
                 tests.stream().collect(Collectors.toMap(o -> (o.getName()+ o.getVar()),
                         Test::getName, (v1, v2) -> v1 + "," + v2));
+    }
+
+
+    private static void peek(){
+        String aa = "xxx" + null;
+        System.out.println(aa);
+        List<Test> tests = Arrays.asList(new Test("1",new BigDecimal(2),3),new Test("1",new BigDecimal(2),3), new Test("11",new BigDecimal(12),33));
+        List<Test> vaaaaa = tests.stream().filter(test -> test.getName().equals("1")).peek(test -> test.setName(
+                null)).collect(Collectors.toList());
+        System.out.println(vaaaaa);;
+
     }
 
 

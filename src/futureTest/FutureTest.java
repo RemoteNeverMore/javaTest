@@ -2,6 +2,7 @@ package futureTest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -12,13 +13,31 @@ import java.util.concurrent.atomic.AtomicReference;
  **/
 public class FutureTest {
 
+    private final static Map<String, Future<Integer>> SCORE_CACHE = new ConcurrentHashMap<>();
     //Future 的 get 方法会导致线程阻塞，里边提供了两个重载的方法，一个是无限等待的方法，一个是带有超时时间的get
     public static void main(String[] args) throws Exception{
 //        asyncSubmit();
 //        asyncCallable();
-        System.out.println(1 << 8);
-          waitTest();
+
+//        SCORE_CACHE.put("sss",null);
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        ScoreQueryService scoreQueryService = new ScoreQueryService();
+        for (int i = 0; i < 3; i++) {
+            executorService.execute(()->{
+                try {
+                    Integer cw = scoreQueryService.query("cw");
+                    System.out.println("cw = " + cw);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        //System.out.println(1 << 8);
+        //waitTest();
     }
+
+
+
 
     private static void waitTest() throws Exception{
         ExecutorService service = Executors.newCachedThreadPool();
